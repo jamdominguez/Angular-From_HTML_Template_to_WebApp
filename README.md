@@ -45,10 +45,21 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
 - Como estructura de página el fichero "portfolio-masonry.html" parece el más actrativo y es el que se elegirá para crear los componentes
 - Los recursos compartidos dentro de la misma aplicación los podemos almacenar creando una carpeta "shared" dentro de "src > app"
 - Para crear el componente "ng g c shared/header --spec=false", la ultima parte es para indicar que no se cree el fichero de pruebas unitarias, pero este argumento ha sido cambiado en version es de Angular posteriores al curso, ahora hay que usar "--skip-tests", por lo que el comando queda "ng g c shared/header --skip-tes
-  ![Template index.html scripts](imgs/header_component_creation_console.PNG)
-  ![Template index.html scripts](imgs/header_component_creation_folder.PNG)
+  ![Header Component creation](imgs/header_component_creation_console.PNG)
+  ![Header Component creation](imgs/header_component_creation_folder.PNG)
 - Este componente es el encargado del header, por lo que, desde "portfolio-masonry.html" se copia el header y se lleva al html del componente.
   ![Header Component](imgs/header_html_1.PNG)
 - El componente creado tiene el selector **app-header**, por lo que se puede utilizar en el componente principal de la aplicación "app.component.html". Y esto se puede ver en el resultado final en el navegador.  
   ![App Component](imgs/app_html_1.PNG)
   ![App](imgs/app_browser_1.PNG)
+
+  ## 2.4 Componente Footer
+  - Al igual que se ha hecho para crear el componente header, se tiene que hacer para crear el componente footer.
+  - Se debe tomar el footer del "portfolio-masonry.html" para el nuevo componente footer.
+  - El nuevo componente tiene el selector **app-footer** que se debe usar para añadirlo al componente principal de la aplicación "app.component.hmtl"
+  - Tras añadirlo, el footer aparecía oculto tras el header y además lo desplazaba. Si se añaden saltos de linea entre ambos selectores se podrá ver.
+  ![App Component](imgs/app_html_2.PNG)
+  ![App](imgs/app_browser_2.PNG)
+  - En el footer aparece una fecha, esta está desactualizada. Se puede usar una instrucción angular para que siempre muestre la fecha actual. Para ello hay que añadir la lógica en el componente footer, en su fichero typescript (ts). Posteriormente entre llaves dobles se puede invocar la variable creada que contiene la fecha actual.
+  ![Footer Component year](imgs/footer_component_year.PNG)
+  ![Footer Component year](imgs/footer_component_year_html.PNG)
