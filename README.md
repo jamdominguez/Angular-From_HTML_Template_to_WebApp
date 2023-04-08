@@ -82,3 +82,8 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - El comando a ejectuar debe ser "ng g c pages/about --skip-tests"
   - Por ahora no existe navegación, así que si se quiere ver el resultado de la creación de esta nueva página habrá que sustituirla en el app.component.
   ![App Component](course_resources/imgs/app_html_4.PNG)
+
+  ## 2.7 Componente Item
+  - Partir del portfolio-item.html y crear el componente tipo página llamado item. Se debe usar "ng g c pages/item --skip-tests"
+  - Usarlo en el app.component para comprobar que se muestra correctamente
+  ![App Component](course_resources/imgs/app_html_5.PNG)
