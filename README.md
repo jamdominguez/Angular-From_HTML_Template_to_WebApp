@@ -30,7 +30,7 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
 - Crear una carpeta docs donde almacenar los documentos (recursos del curso)
   
 ## 2.1 Iniciar proyecto Angular
-- Con la instrucción "**ng new** portafolio" se crea un nuevo proyecto llamado portafolio
+- Con la instrucción "**ng new** portafolio" se crea un nuevo proyecto llamado portafolio. Crea además el componente principal de la aplicación **app.component**.
 - Para levantar la aplicación "**ng serve -o**", este comando debe ejecutarse dentro del proyecto Angular (carpeta portafolio)
 
 ## 2.2 Estructura HTML basica en el proyecto Angular
@@ -55,6 +55,8 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
 - El componente creado tiene el selector **app-header**, por lo que se puede utilizar en el componente principal de la aplicación "app.component.html". Y esto se puede ver en el resultado final en el navegador.  
   ![App Component](course_resources/imgs/app_html_1.PNG)
   ![App](course_resources/imgs/app_browser_1.PNG)
+- Siempre que se crea un componente este es añadido al módulo de la aplicación app.module.ts, es buena práctica verificarlo.
+  ![App Module](course_resources/imgs/app_module.PNG)
 
   ## 2.4 Componente Footer
   - Al igual que se ha hecho para crear el componente header, se tiene que hacer para crear el componente footer.
@@ -74,3 +76,9 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - La pagina se puede personalizar como se quiera, por ejemplo, quitar las categorías de portafolios y dejar sólo el tipo Masonry.
   - Cada componente sólo debe tener información única, y el componente creado posee un primer elemento **section** que se repite en otras páginas, por lo que se debe quitar del componente y añadir al HTML de la aplicación.
   ![App Component](course_resources/imgs/app_html_3.PNG)
+
+  ## 2.6 Componente About
+  - Como se viene haciendo, tomar el HTML de la template referente al about y crear un nuevo componente. Este es tipo página por lo que tendrá que ir a la carpeta pages y se le deberá eliminar el primer elemento section/div que ya se ha añadido al HTML del componente de la aplicación (app)
+  - El comando a ejectuar debe ser "ng g c pages/about --skip-tests"
+  - Por ahora no existe navegación, así que si se quiere ver el resultado de la creación de esta nueva página habrá que sustituirla en el app.component.
+  ![App Component](course_resources/imgs/app_html_4.PNG)
