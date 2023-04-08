@@ -89,6 +89,7 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![App Component](course_resources/imgs/app_html_5.PNG)
 
   # 3 Creacion de rutas
+  ## 3.1 Definición de rutas
   - Se puede usar Angular CLI para crear el routing, pero en este curso la idea es crear todo desde cero (o casi todo), por lo que en este caso habrá que crear un fichero en la carpeta app llamado "app-routing.module.ts" donde se configurarán las rutas de la aplicación. Es posible que en la creación del proyecto ya se haya creado este fichero (es mi caso), ya que dependerá de la versión de Angular.
   ![Routing](course_resources/imgs/routing_1.PNG)
   - El ruteo se podría añadir al app.module.ts, donde se declaran los componentes, pero se hace por separado para que no quede tan cargado.
@@ -103,6 +104,24 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
     - Escribir /about, el navegador mantendrá la dirección aunque por ahora no se verá nada
     - Escribir /item, el navegador mantendrá la dirección aunque por ahora no se verá nada
     - Escribir /hola, el navegador cambiará la dirección a '' que es lo que se ha definido, aunque por ahora no se verá nada
-  - Ahora hay que indicarle a Angular que dependiendo de la ruta, renderice un componente u otro, es decir, use lo definido en el modulo de routing (app-routing.module.ts). Para ello se usa **router-outlet** en el HTML de la aplicación. Si al usar este selector en la web aparece un error se debe a que falta exportar en el modulo de ruta el RouterModule.
+
+  ## 3.1 Full Refresh
+  - Hay que indicarle a Angular que dependiendo de la ruta, renderice un componente u otro, es decir, use lo definido en el modulo de routing (app-routing.module.ts). Para ello se usa **router-outlet** en el HTML de la aplicación. Si al usar este selector en la web aparece un error se debe a que falta exportar en el modulo de ruta el RouterModule.
   - Si ahora se cambia la ruta la web se actualizará con el contenido de los componentes además de la redirección cuando sea necesario. Esto hace un full refresh, que no es lo deseado, aunque por ahora funciona.
   ![App Component](course_resources/imgs/app_html_6.PNG)
+
+  ## 3.2 RouterLink
+  - En este punto se va a editar en menú de navegación y el footer para que funcionen correctamente. Ahora mismo si se clicka en cualquier opción de la aplicación la ruta cambia para recuperar un recurso HTML, como ninguna de estas rutas está definida, siempre se redirecciona a la ruta por defecto como se indicon en el modulo de rutas.
+  - El componente header es el que se encarga de pintar la cabecera, y por tanto el que se tendrá que modificar para que las opciones del mismo funcionen.
+  - En su HTML contiene una sección con todos los href de los enlaces, esto en una aplicación Angular se debe cambiar para que no tenga que recargar completamente la página.
+  ![Header with href](course_resources/imgs/header_html_2.PNG)
+  - En Angular los href son susitutiidos por la directiva **routerLink** igualando la ruta deseada. Si se sustituyen los htref por las rutas de los componentes relacionados, se podrá observar como al clickar en ellos en la aplicación, la ruta va cambiando y los componentes apareciendo.
+  ![Header with routerLink](course_resources/imgs/header_html_3.PNG)
+  - Además se ha detectado que la clase "active" es la que cambia el estilo de la opción según esté seleccionada, pero ahora no está funionando. Para ello se usará Angular también.  Para ello se usa la directiva **routerLinkActive** igualandola a la clase deseada cuando esté activa, en este caso, "active". Añadiendo esta directiva lo que hace Angular es que si la ruta coincide con la del routerLink que contiene, pondrá la clase indicada en el routerLinkActive. Haciendo esto no termina de comportarse del todo, porque la ruta about también contiene ruta vacía, por lo que coincide y se activan Home y About a la vez al marca Home, no pasa marcando Homme.
+  ![Header with routerLink](course_resources/imgs/header_html_4.PNG)
+  - Para solventar lo anterior habrá que definir mejor el modulo de rutas. Para ello sustituiremos la ruta vacía "" por "home". También habrá que cambiarlo en el routerLink del header.
+  ![Routing change empty rout by home](course_resources/imgs/routing_4.PNG)
+  ![Header with routerLink](course_resources/imgs/header_html_5.PNG)
+  - En el footer también hay links para sustituir por su versión en Angular, se puede cambiar también.
+  - Por último sería cambiar los items, pero por ahora se hará sólo con el primero, esto está en el componente portafolio. En portafolio para configurar la llamada a item, aquí se usa "/item" ya que si no se pensaría que es una ruta hija, y en este caso es una ruta padre.
+  ![Portafolio con item](course_resources/imgs/portafolio_html_1.PNG)

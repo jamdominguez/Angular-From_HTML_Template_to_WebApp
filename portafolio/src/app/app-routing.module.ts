@@ -5,10 +5,10 @@ import { AboutComponent } from './pages/about/about.component';
 import { ItemComponent } from './pages/item/item.component';
 
 const routes: Routes = [
-  {path: '', component: PortafolioComponent},
+  {path: 'home', component: PortafolioComponent},
   {path: 'about', component: AboutComponent},
   {path: 'item', component: ItemComponent},
-  {path: '**', pathMatch: 'full', redirectTo: ''} //any not defined route redirect to path ''
+  {path: '**', pathMatch: 'full', redirectTo: 'home'} //any not defined route redirect to path 'home'
 ];
 
 @NgModule({
