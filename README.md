@@ -125,3 +125,11 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - En el footer también hay links para sustituir por su versión en Angular, se puede cambiar también.
   - Por último sería cambiar los items, pero por ahora se hará sólo con el primero, esto está en el componente portafolio. En portafolio para configurar la llamada a item, aquí se usa "/item" ya que si no se pensaría que es una ruta hija, y en este caso es una ruta padre.
   ![Portafolio con item](course_resources/imgs/portafolio_html_1.PNG)
+
+  ## 3.3 Hash Routing
+  - Normalmente en los servidores las rutas se configuran en el archivo htaccess. La idea final de este curso es poder desplegar en GitHub Pages, donde no se tiene acceso a este archivo, por lo que no se podrá usar este tipo de rutas. El navegador pensará que tiene que buscar el directoro item, about, home, o cualquiera que se indique después del slash (/). Para solventar eso, usaremos el hash, es decir, que a la ruta se agregue un hash.
+  - Para configurar el hash en las rutas es necesario modificar el app-routing.module.ts. Hay que añadir un parametro la import del RouterModule quedando:
+  ![Routing with hash](course_resources/imgs/routing_5.PNG)
+  - Probando la aplicación, ahora se introduce un hash previo a la ruta, esto le indica al navegador que no intente cargar el directorio que viene después del slash (/), sino que eso es parte de la ruta.
+  ![Routing with hash in browser](course_resources/imgs/app_browser_3.PNG)
+  ![Routing with hash in browser](course_resources/imgs/app_browser_4.PNG)
