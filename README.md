@@ -141,3 +141,19 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - Definir dentro de el json creado algunas propiedades fijas/constantes de la aplicación. Una de las propiedades debe almacenar el equipo de trabajo, yo la he llamado "work_team", por ahora no hace falta darle valor.
   ![Data page JSON](course_resources/imgs/data_page_json.PNG)
   - Para comprobar que la estrucutra de un JSON es correcta, se puede usar la web http://json.parser.online.fr/.
+
+  ## 4.2 Servicio para consultar los datos
+  - Un servicio se puede usar para compartir información global dentro de toda la aplicación, para manejar logica, etc. Se ha de crear un servicio que permita leer el JSON de la configuración en cualquier punto de la aplicación. La idea es que la configuración se cargue una sola vez al acceder a la aplicación.
+  - Para crear un servicio en Angular hay que ejecutar el comando **ng g s services/infoPage --skip-tests**. Este comando creará el servicio infoPage dentro de una nueva carpeta services y en la creación de éste, no generará un archivo para test.
+  - Tras crear el servicio se puede comprobar como el app-module.ts no fue actualizado automaticamente (como cuando se crea un componente). Los servicios normalmente se deberían importar y añadir al array de providers. Pero esto ya no es necesario, ya que en la definición del servicio tiene un decorado (**@Injectable**) que indica dónde ha de inyectar el servicio, y por defecto lo hace en "root".
+  ![infoPage service](course_resources/imgs/info_page_1.PNG)
+  - Ahora habría que invocar el servicio al iniciar la aplicación, es decir, en el "app.component.ts". Se debe crear un constructor y en el hacer la inyección de una dependencia. El nombre en la inyección puede ser cualquiera, pero se suele indicar como "_nombre" o "nombreService", a mi me gusta más la segunda opción.
+  - Con sólo hacer la inyección, Angular llama al servicio automaticamente.
+  ![infoPage service](course_resources/imgs/info_page_2.PNG)
+  ![App HTML](course_resources/imgs/app_html_7.PNG)
+  ![App browser](course_resources/imgs/app_browser_5.PNG)
+  - Ahora hay que implementar en el servicio la lógica necesaria para obtener la información, para ello será necesario el uso de un modulo que permita hacer llamadas http, **HttpClientModule**. Habrá que importar este módulo en el app.module.ts. Si al añadirlo a los imports no se reconoce el módulo hay que añadir la importación manualmente tal y como se indica el la siguiente imagen.
+  ![App module](course_resources/imgs/app_module_2.PNG)
+  - En el InfoPageService hay que inyectar un servicio ya incluido en el módulo HttpClientModule que se acaba de importar a la aplicación. Se puede usar su función **get** para obtener la información en una dirección. Además se puede añadir un par de campos propios del servicio que se está implementando (InfoPageService) para guardar información relativa a la consulta hecha. Como se desconoce la información que se va a obtener al invocar la dirección mediante get, el tipo de objecto donde se guardará se define como **any** y con un boolean podemos controlar si ya hubo o no respuesta del servicio. *Si por alguna razón, se obtiene un 404 al intentar acceder al json, cambia el nombre a la carpeta data o recompila la aplicación, a mi me ha pasado y hasta que no he cambiado el nombre a la carpeta varias veces no ha encontrado el archivo json*.
+  ![infoPage service](course_resources/imgs/info_page_3.PNG)
+  ![App HTML](course_resources/imgs/app_html_8.PNG)
