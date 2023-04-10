@@ -133,3 +133,11 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - Probando la aplicación, ahora se introduce un hash previo a la ruta, esto le indica al navegador que no intente cargar el directorio que viene después del slash (/), sino que eso es parte de la ruta.
   ![Routing with hash in browser](course_resources/imgs/app_browser_3.PNG)
   ![Routing with hash in browser](course_resources/imgs/app_browser_4.PNG)
+
+  # 4 Servicios, constantes y HTTP
+  ## 4.1 Configuración de la aplicación usando JSON
+  - Para configurar cosas globales de la aplicación, como enlaces a otras aplicaciones, nombres, emails, etc, se puede usar un JSON donde almacenar todo.
+  - En la carpeta assets, crear una nueva carpeta llamada data y dentro un fichero JSON llamado "data-page-json".
+  - Definir dentro de el json creado algunas propiedades fijas/constantes de la aplicación. Una de las propiedades debe almacenar el equipo de trabajo, yo la he llamado "work_team", por ahora no hace falta darle valor.
+  ![Data page JSON](course_resources/imgs/data_page_json.PNG)
+  - Para comprobar que la estrucutra de un JSON es correcta, se puede usar la web http://json.parser.online.fr/.
