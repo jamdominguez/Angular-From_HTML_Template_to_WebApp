@@ -185,5 +185,36 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - El fichero src > styles.css es el que contiene los estilos css de la aplicación, por ahora debería estar vacío. Aquí se deben añadir las clases que se van a utilizar (fadeIn).
    ![Styles css](course_resources/imgs/styles_1.PNG)
   - Ahora se puede agregar la animación a las fotos en about, para ello, en los elementos de las imágenes, agregar a su atributo class la clase **animate__animated animate__fadeIn**. Por ejemplo al primer item de portafolio y a la primera imagen del about.
-  ![Header html](course_resources/imgs/portafolio_html_2.PNG)
-  ![Footer html](course_resources/imgs/about_html_1.PNG)
+  ![Portafolio html](course_resources/imgs/portafolio_html_2.PNG)
+  ![About html](course_resources/imgs/about_html_1.PNG)
+
+  # 5. Backend with FireBase
+  Firebase es un servicio que proporciona una base de datos muy parecida a Mongo, es decir, base de datos documental. Este tipo de base guarda los objetos en tipos muy parecidos a los de JavaScript. Además de esto proporciona un backend con los servicios rest para poder consultar la base de datos.
+  ## 5.1 Data Base creation with Firebase
+  - La idea de este punto es almacenar la información de los componentes del equipo (la información de about) en una base de datos y mediante un servicio rest que provea Firebase acceder a esta información.
+  - Acceder a Firebase en https://firebase.google.com/, para ello se debe estar registrado. Pulsar el "Go to console" y pulsar en la tarjeat "Agregar proyecto"
+  ![Firebase web](course_resources/imgs/firebase_1.PNG)
+  - Ahora hay que ir rellenando la información necesaria, como nombre de proyecto (angular-from-html-to-webapp), país y aceptar las condiciones. Yo he dejado Google Analytics activo ya que es gratuito y en un futuro podría aportar información relevante. Finalizar pulsando en "Crear proyecto". Tarda menos de un minuto en crearse el proyecto.
+  ![Firebase web](course_resources/imgs/firebase_2.PNG)
+  ![Firebase web](course_resources/imgs/firebase_3.PNG)
+  ![Firebase web](course_resources/imgs/firebase_4.PNG)
+  - Pulsar en el menú lateral "Todos los productos", se podrá ver todo lo que proporciona Firebasse. Una de las opciones es Realtime Database, pulsar en ella.
+  ![Firebase web](course_resources/imgs/firebase_5.PNG)
+  ![Firebase web](course_resources/imgs/firebase_6.PNG)
+  ![Firebase web](course_resources/imgs/firebase_7.PNG)
+  - Pulsar en "Crear una base de datos", elegir la ubicación más cercana a su localización para la base de datos, en reglas de seguridad elegir "modo de prueba" y pulsar "Habilitar". Una vez creada, acceder al tab "Reglas" y en read escribir true en write escribir false, para ser nosotros los únicos que pueden escribir. Después pulsar "Ctrl+s" o pulsar "Publicar".
+  ![Firebase web](course_resources/imgs/firebase_8.PNG)
+  - En la pestaña "Datos" es donde se gestionan los datos de la base de datos. Poniendo el icono sobre la dirección aparece un + que sirve para añdir la información. Como lo que se quiere es añadir la información en about, hay que ir añadiendo filas hasta que quede como en la siguiente imagen.
+  ![Firebase web](course_resources/imgs/firebase_9.PNG)
+  - La primera fila representa el campo "team", la siguitente el primer miembro "0" y las que cuelgan de este, son los diferentes campso para cada miembro como puede ser message, name, subtitle, twitter. Después de ello pulsar agregar. Lo siguiente sería crear una entrada por cada componente del about.
+  - Clicando sobre "work_team" la url cambia, si se pulsa sobre el icono del "lik", el que está a la izquierda de la url, se copiará al porta papeles. En mi caso https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/work_team. Si en el navegador se pega esta dirección concatenado de **.json**, se estará invocando al servicio REST que devuelve el JSON del objeto ("tabla") "work_team" que se acaba de crear. En total sería la dirección **https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/work_team.json**
+  ![Firebase web](course_resources/imgs/firebase_10.PNG)
+  ![Firebase web](course_resources/imgs/firebase_11.PNG)
+  - Lo que quedaría por añadir son las imagenes (fotos) de cada persona que aparece en el about. Estas las podemos almacenar en el "Storage" de Firebase. Pulsar en el menú de la izquierda "Storage", después "Comenzar" y una vez creado el la pestaña "Reglas" modificarla para que todo el mundo pueda leer, quedando:
+  ![Firebase web](course_resources/imgs/firebase_12.PNG)
+  - Desde la pestaña de "Archivos", seleccionar "Subir archivo". Seleccionar de dentro del proyecto de la aplicación "assets > img", los fichero team-1.jpg, team-2.jpg y team-3.jpg.
+  ![Firebase web](course_resources/imgs/firebase_13.PNG)
+  - Seleccionando la primera imagen, después en la parte inferior derecha, clicakndo sobre el hash bajo "Token de acceso" se copiará al porta papeles la dirección de la imagen. Si se pega en el navegador se podrá ver.
+  ![Firebase web](course_resources/imgs/firebase_14.PNG)
+  - Ahora, habrá que copiar esta dirección y almacenarla en cada elemento del objeto "work_team" creado previamente. El campo que almacenará esta dirección se llamará "url".
+  ![Firebase web](course_resources/imgs/firebase_15.PNG)
