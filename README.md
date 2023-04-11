@@ -218,3 +218,14 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Firebase web](course_resources/imgs/firebase_14.PNG)
   - Ahora, habrá que copiar esta dirección y almacenarla en cada elemento del objeto "work_team" creado previamente. El campo que almacenará esta dirección se llamará "url".
   ![Firebase web](course_resources/imgs/firebase_15.PNG)
+
+  ## 5.2 Using Firebase REST service to get work_team information
+  - Si se recuerda, anteriormente el servicio InfoPageService obtenia de un json almacenado en el proyecto información de la web, pero se dejó sin informar el campo "work_team". En este punto, lo que se hará es una llamada al servicio REST de Firebase que expone el objeto "work_team" creado en el punto anterior para obtener la información.
+  - En el servicio InfoPageService, agregar una llamada get para obtenerla información y guardarla en el campo info.work_team. En la siguiente imagen se muestra como se ha hecho junto con una pequeña estructuración del fichero "info-page-service-ts". Tras el cambio y recarga de la aplicación, se podrá ver en los logs que se obtienen los datos incluidos en Firebase.
+  ![Firebase web](course_resources/imgs/info_page_6.PNG)
+  ![Firebase web](course_resources/imgs/info_page_7.PNG)
+  - Ya con la información se podría crear un interfaz al igual que antes para dotar de identidad al objeto obtenido en la llamada (también se puede usar sin interfaz). Y así, con mayor fiabilidad usar los campos en el HTML del componente about para mostrar la información, aunque previamente hay que inyectar el servicio en el componente about.
+  ![Firebase web](course_resources/imgs/about_1.PNG)
+  - Ahora en el HTML podemos añadir la información. Este es buen momento para usar las ventajas de Angular. Como se requiere mostrar 3 "tarjetas" (div) de los componetnes del equipo (Work_team), se puede usar la instrucción / directiva ***ngFor="let person of infoPageService.team"** en una sola tarjeta (div) e iterar a lo largo del array team. Esta instrucción lo que hace es repetir el div por cada elemento de team, y en cada iteración lo guarda en la variable person, por lo que usando esta variables se puede acceder a la infromaciónd e cada componetne del quipo. Como se puede ver en la siguiente imagen, ahora sólo hay un div que se repetirá tantas veces como componentes / miembros del equipo y se usa la variable person para acceder a la información.
+  ![Firebase web](course_resources/imgs/about_html_2.PNG)
+  ![Firebase web](course_resources/imgs/about_web_1.PNG)
