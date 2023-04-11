@@ -229,3 +229,13 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - Ahora en el HTML podemos añadir la información. Este es buen momento para usar las ventajas de Angular. Como se requiere mostrar 3 "tarjetas" (div) de los componetnes del equipo (Work_team), se puede usar la instrucción / directiva ***ngFor="let person of infoPageService.team"** en una sola tarjeta (div) e iterar a lo largo del array team. Esta instrucción lo que hace es repetir el div por cada elemento de team, y en cada iteración lo guarda en la variable person, por lo que usando esta variables se puede acceder a la infromaciónd e cada componetne del quipo. Como se puede ver en la siguiente imagen, ahora sólo hay un div que se repetirá tantas veces como componentes / miembros del equipo y se usa la variable person para acceder a la información.
   ![Firebase web](course_resources/imgs/about_html_2.PNG)
   ![Firebase web](course_resources/imgs/about_web_1.PNG)
+
+  # 5.3 Exporting and importing information to Firebase
+  - La idea es cargar toda la información de la web de manera dinámica. En el recurso adjunto de la clase del curso está la información necesaria.
+  - Previamente a añadir la información, se debe hacer una backup de la base de datos creada. Para ello, en los tres puntos a la derecha de la dirección de la base de datos en Firebase Realtime, pulsar "Exportar JSON". Esto exporta el JSON con la información añadida hasta ahora que debería ser sólo el objeto "work_team".
+  ![Firebase web](course_resources/imgs/firebase_16.PNG)
+  - Es posbile importar JSON en la base de datos y así se crearán los objetos necesarios. Para ello, de los recursos del curso, obtener productos.json y productos_idx.json. Previo a ello hay que crear un nodo temporal para productos, esto se hace clicando en la url o en el lapíz que aparece a su derecha en Firebase y editandola concatenando "productos" al final. Es en esta url donde se debe clickar en los tres puntos e "Importar JSON" para importar el productos.json.
+  ![Firebase web](course_resources/imgs/firebase_17.PNG)
+  ![Firebase web](course_resources/imgs/firebase_18.PNG)
+  - Repetir lo mismo para crear el objeto productos_idx. Una vez hecho esto, clickando en la url de la base de datos se puede observar la estructura con los nuevos objetos.
+  ![Firebase web](course_resources/imgs/firebase_19.PNG)
