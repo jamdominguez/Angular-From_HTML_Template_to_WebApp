@@ -158,7 +158,7 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![infoPage service](course_resources/imgs/info_page_3.PNG)
   ![App HTML](course_resources/imgs/app_html_8.PNG)
 
-  ## 4.3 Interfaz para la información de página
+  ## 4.3 Interfaz para la información de página (DataPage)
   - Esta sección es opcional, pero aconsejable, ya que se explica cómo crear una interfaz para la respuesta obtenida en la consulta get al fichero data-page.json. De esta manera, la respuesta que se almacena en el campo info de tipo **any**, será del tipo interfaz que creemos, dotando así de identidad al objeto y conociendo sus propiedades.
   - Con el comando **ng g i interfaces/data-page interface** se crea la carpeta interfaces y dentro la interfaz DataPage. El ultim atributo "interface" es opcional, pero si no se pone, el nombre del fichero no contendrá ".interface" y por tanto habrá que cambiar el nombre a mano ya que la generación automática no lo hace (a diferencia que en los servicios). También se puede omitir, pero no respetaríamos la sintaxis que seguimos con los services.
   ![Data Page Interface commands](course_resources/imgs/data_page_interface_1.PNG)
@@ -170,3 +170,11 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Data Page Interface](course_resources/imgs/info_page_4.PNG)
   - La manera de solventar esto es indicarle a Angular que todas las propiedades de la intefaz son opcionales. Esto se hace añadiendo un **?** a todas las propiedaes. Además, si se especifíca que la respuesta en la llamada al get es tipo DataPage, TS reconocerá las propiedades del objeto.
   ![Data Page Interface](course_resources/imgs/info_page_5.PNG)
+
+  ## 4.4. Using InfoPageService
+  - En este punto, cuando se accede a la aplicación, se inyecta el servicio y como se ha implementado, en el constructor del mismo almacena en su campo info la respuesta de la llamada a obtejer el fichero JSON. Este campo info es de tipo DataPage y se puede usar en distintas partes de la aplicación para obtener la información obtenida.
+  - Los componentes footer y header se van a beneficiar de esta información, por tanto deberán importar el servicio e inyectarlo en el constructor para poder acceder a su campo info y las diferentes propiedades usando **{{}}**. También se puede poner entre **[]** el atributo que se quiere asociar a la propiedad y usar esta sin las llaves (cono en el ejemplo del footer)
+  ![Header ts](course_resources/imgs/header_ts_1.PNG)
+  ![Header html](course_resources/imgs/header_html_6.PNG)
+  ![Footer html](course_resources/imgs/footer_html_1.PNG)
+  
