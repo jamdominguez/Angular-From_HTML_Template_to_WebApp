@@ -171,10 +171,19 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - La manera de solventar esto es indicarle a Angular que todas las propiedades de la intefaz son opcionales. Esto se hace añadiendo un **?** a todas las propiedaes. Además, si se especifíca que la respuesta en la llamada al get es tipo DataPage, TS reconocerá las propiedades del objeto.
   ![Data Page Interface](course_resources/imgs/info_page_5.PNG)
 
-  ## 4.4. Using InfoPageService
+  ## 4.4 Using InfoPageService
   - En este punto, cuando se accede a la aplicación, se inyecta el servicio y como se ha implementado, en el constructor del mismo almacena en su campo info la respuesta de la llamada a obtejer el fichero JSON. Este campo info es de tipo DataPage y se puede usar en distintas partes de la aplicación para obtener la información obtenida.
   - Los componentes footer y header se van a beneficiar de esta información, por tanto deberán importar el servicio e inyectarlo en el constructor para poder acceder a su campo info y las diferentes propiedades usando **{{}}**. También se puede poner entre **[]** el atributo que se quiere asociar a la propiedad y usar esta sin las llaves (cono en el ejemplo del footer)
   ![Header ts](course_resources/imgs/header_ts_1.PNG)
   ![Header html](course_resources/imgs/header_html_6.PNG)
   ![Footer html](course_resources/imgs/footer_html_1.PNG)
-  
+
+  ## 4.5 Adding animations
+  - Se agregar animaciones a los elementos de la web con css. Animate.css son un conjunto de clases que permite hacer este tipo de animaciones facilmente.
+    - Fichero: https://github.com/animate-css/animate.css/blob/main/animate.css
+    - Documentación: https://animate.style/
+  - El fichero src > styles.css es el que contiene los estilos css de la aplicación, por ahora debería estar vacío. Aquí se deben añadir las clases que se van a utilizar (fadeIn).
+   ![Styles css](course_resources/imgs/styles_1.PNG)
+  - Ahora se puede agregar la animación a las fotos en about, para ello, en los elementos de las imágenes, agregar a su atributo class la clase **animate__animated animate__fadeIn**. Por ejemplo al primer item de portafolio y a la primera imagen del about.
+  ![Header html](course_resources/imgs/portafolio_html_2.PNG)
+  ![Footer html](course_resources/imgs/about_html_1.PNG)
