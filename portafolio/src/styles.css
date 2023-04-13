@@ -49,3 +49,8 @@
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
   }
+/* Loading */
+svg path,
+svg rect{
+  fill: black;
+}

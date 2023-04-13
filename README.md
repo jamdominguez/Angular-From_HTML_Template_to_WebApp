@@ -260,3 +260,13 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Portafolio component](course_resources/imgs/portafolio_component_1.PNG)
   ![Portafolio HTML](course_resources/imgs/portafolio_html_3.PNG)
   - Quedaría pendiente que al seleccionar un item, aparezca la información del mismo, lo cual no está pasando ahora mismo. Para ello habrá que enviar el id del item para así poder recuperarlo en el componente item.
+
+## 5.5 Adding loading overlay
+- En este punto se va a añadir un overlay de carga para usar en el portafolio. El código del overlay se puede descargar de https://codepen.io/Klerith/pen/RZpwKm. La idea es que mientras Firebase responde a las peticiones el overlay indique al usuario que la web se está cargando (aunque Firebase responda rápido, es buena práctica).
+- Se debe copiar el código HTML del overlay y pegarlo en el HTML del portafolio.component, juesto después de las section y antes de la div que contiene los items. Se pondrá dentro de otro div con alineación center para mejorar el aspecto, además de añadir un párrafo.
+- Se debe copiar el código CSS y pegarlo en el fichero styles.css de la aplicación.
+  ![Portafolio HTML](course_resources/imgs/portafolio_html_4.PNG)
+  ![Styles](course_resources/imgs/styles_2.PNG)
+- Si se mira el resultado en la web, se puede ver el spin girando. Ahora habrá que indicarle a la apliación cuando mostrarlo y cuando no. Usaremos el campo "loading" del ProdcutService. De tal manera que si la variable es true se mostrará el div del overlay y se ocultará el div del contenido de los items y al contrario. El servicio responde, muy rápido, por lo que **para testearlo** se puede poner un timeout que retarde el cambio de valor de variable en el ProductsService. Una vez testeado, revertir estos cambios.
+  ![Portafolio HTML](course_resources/imgs/products_service_2.PNG)
+  ![Styles](course_resources/imgs/loading_1.PNG)
