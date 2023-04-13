@@ -239,3 +239,24 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Firebase web](course_resources/imgs/firebase_18.PNG)
   - Repetir lo mismo para crear el objeto productos_idx. Una vez hecho esto, clickando en la url de la base de datos se puede observar la estructura con los nuevos objetos.
   ![Firebase web](course_resources/imgs/firebase_19.PNG)
+
+  ## 5.4 Creating ProductsService and building items
+  - En esta sección se va a crear un servicio para obtener los productos y poder así construir la parte del home de la aplicación (componente portfolio)
+  - Usando el comando **ng g s services/products --skip-tests** se creará el servicio. Nótese que no hace falta añadir al comando el atributo service para que Angular le concatene la palabra Service al mismo.
+  - En el constructor se inyecta la clase HttClient ya que se necesitará para hacer peticiones a Firebase. Además se añadirá un flag "loading" que indicará si se está cargando la información desde el servicio o no, éste será utilizado en el futuro.  
+  - Como buena práctica hay que crear una interfaz para la respuesta de este servicio. El comando sería **ng g i interfaces/products interface**, se puede tomar de la consola del navegador el JSON de la respuesta y usando la extensión "JSON to TS" implementar el products.component.
+  ![Product interface](course_resources/imgs/product_interface_1.PNG)
+  ![Products service](course_resources/imgs/products_service_1.PNG)
+
+
+  - Dónde llamar a este servicio depende de cada uno. En este caso, se puede hacer an al app.component o en el portafolio.component. Pero lo optimo es hacerlo en el app.component, ya que aquí sólo se llamará una sóla vez al acceder a la web. Si se pone en el portfolio.component, cada vez que se acceda a home de la web se llamará al servicio. A priori, la información sobre productos no cambia mientras navegamos por lo que lo ideal es hacerlo al cargar la web.
+  ![App component](course_resources/imgs/app_component_1.PNG)
+  - Antes de empezar a usar la información obtenida hay que arreglar un error en el campo url de los elementos del objeto productos_idx en Firebase. En los campos url que contengan ".jpg" se deberá elimnar esta extensión, dejando sólo el nombre del fichero. Después de modificar el campo url, se puede verificar en el log del navegador que ahora responde sin ".jpg".
+  ![Firebase web](course_resources/imgs/firebase_20.PNG)
+  ![Web application](course_resources/imgs/app_browser_6.PNG)
+  - El servicio lo vamos a usar el el componente portfolio, por lo que deberemos inyectarlo también aquí (portafolio.component.ts) para poder recuperar la información y pintarla en su HTML (portafolio.component.html). Este HTML va a quedar mucho más simple ya que todos los items se recuperan del servicio y con la misma directiva / instucción que se usó en el about se puede iterar en el array de productos, ***ngFor="let item of products"**.
+  - Hay que tener en cuenta que las imagenes de los productos están en los recursos proporcionados en el curso anteriormente, en la carpeta "productos" del último zip del curso, por lo que habrá que copiarla y pegarla en la carpeta "assets" del proyecto para poder acceder a ellos.
+  ![Project structure](course_resources/imgs/project_structure.PNG)
+  ![Portafolio component](course_resources/imgs/portafolio_component_1.PNG)
+  ![Portafolio HTML](course_resources/imgs/portafolio_html_3.PNG)
+  - Quedaría pendiente que al seleccionar un item, aparezca la información del mismo, lo cual no está pasando ahora mismo. Para ello habrá que enviar el id del item para así poder recuperarlo en el componente item.

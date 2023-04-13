@@ -22,7 +22,7 @@ export class InfoPageService {
     this.http.get('assets/data/data-page.json').subscribe((resp: DataPage) => {
       this.infoLoaded = true;
       this.info = resp;
-      console.log(resp);
+      //console.log(resp);
     });
   }
 
@@ -30,7 +30,7 @@ export class InfoPageService {
     this.http.get('https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/work_team.json').subscribe((resp: any) => {
       this.teamLoaded = true;
       this.team = resp;
-      console.log(resp);
+      //console.log(resp);
     });
   }
 
