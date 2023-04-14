@@ -353,5 +353,7 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Index docs](course_resources/imgs/index_docs_1.PNG)
   ![Index src](course_resources/imgs/index_src_1.PNG)
   - Volviendo a ejecutar **ng serve** el proyecto se compila y se queda preparado para pre producción. En este punto se puede subir a GitHub.
-  - Ahora se debe publicar la página usando GitHub Pages. Dentro del repositorio, en la tab settings, buscar la sección GitHub Pages en el menú de la izquierdda. Y en la branch, se selecciona en la que esté el codigo que se quiere publicar, en mi caseo en "main", y en el folder el "/docs".
+  - Ahora se debe publicar la página usando GitHub Pages. Dentro del repositorio, en la tab settings, buscar la sección GitHub Pages en el menú de la izquierdda. Y en la branch, se selecciona en la que esté el codigo que se quiere publicar, en mi caseo en "main", y en el folder el "/docs" y pulsar "Save".
+  ![GitHub](course_resources/imgs/github_1.PNG)
+  - Al finalizar se muestra un mensaje en la parte superior "GitHub Pages source saved"
   ![GitHub](course_resources/imgs/github_1.PNG)
