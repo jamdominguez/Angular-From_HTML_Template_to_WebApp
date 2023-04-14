@@ -6,7 +6,7 @@ It is based in a [Udemy](https://www.udemy.com/) course.
 
 <div align="center">
 
-![Angular: Convierte cualquier template HTML en una WebAPP](courseIcon.png)<br>
+![Angular: Convierte cualquier template HTML en una WebAPP](courseIcon.PNG)<br>
 [Angular: Convierte cualquier template HTML en una WebAPP](https://www.udemy.com/course/html-hacia-angular/) by Fernando Herrera.
 
 </div>
