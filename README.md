@@ -268,5 +268,40 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Portafolio HTML](course_resources/imgs/portafolio_html_4.PNG)
   ![Styles](course_resources/imgs/styles_2.PNG)
 - Si se mira el resultado en la web, se puede ver el spin girando. Ahora habrá que indicarle a la apliación cuando mostrarlo y cuando no. Usaremos el campo "loading" del ProdcutService. De tal manera que si la variable es true se mostrará el div del overlay y se ocultará el div del contenido de los items y al contrario. El servicio responde, muy rápido, por lo que **para testearlo** se puede poner un timeout que retarde el cambio de valor de variable en el ProductsService. Una vez testeado, revertir estos cambios.
-  ![Portafolio HTML](course_resources/imgs/products_service_2.PNG)
-  ![Styles](course_resources/imgs/loading_1.PNG)
+  ![Product service](course_resources/imgs/products_service_2.PNG)
+  ![Loading](course_resources/imgs/loading_1.PNG)
+
+  # 6. Items and search feature
+  ## 6.1 Sending params by URL
+  - Acutalmente en el portafolio el routerLink de cada item está hardcode a "/item" en el "portafolio.component.html", cuando debería variar dependiendo del item. Para arreglar esto hay que modificar las rutas en el "app-routing.module.ts", en la ruta del item hay que cambiarlo por "/item/:id". Esto indica que en la URL aparecerá el id del item.
+  ![Routing](course_resources/imgs/routing_6.PNG)
+  - Ahora hay que especificar el id de cada item. Esto se hace modificando el routerLink de cada item en el "portafolio.component.html". El id será el campo "cod" de cada item, que es el que coincide con lo elemntos de la tabla productos en Firebase (no la de productos_idx). Para indicar a Angular que en un atributo de un elemento va a recibir parametros de forma dinámica, el atributo se pone entre corchetes(**[]**)
+  ![Portafolio](course_resources/imgs/portafolio_html_5.PNG)
+  - Quedaría leer el id de la URL en el item.component. Para leer la URL hace falta un servicio llamado **ActivatedRoute**, por lo que habrá que inyectarlo. Al usar la función subscrive del campo param del sericio se podrá obtener los parámetros de la URL. De todos los posibles que puedan llegar sólo nos intersa el "id". Si se logea la el valor del id, cada vez que se haga click sobre un item, se podrá ver su valor en la consola del navegador.
+  ![Item ts](course_resources/imgs/item_ts.PNG)
+  ![App broser](course_resources/imgs/app_browser_7.PNG)
+  
+  ## 6.7 New function to get item deatils
+  - Se quiere obtener los detallos de los productos, aquí hay dos maneras de hacerlo, al igual que antes, obtener todos los detalles al cargar la aplicación o cargar el detalle de un producto cuando se clicke en él. Esta última es la idea para la situación.
+  - En Firebase, revisar acceder a un elemento del objeto "productos", por ejemplo al "prod-1" y copiar su URL. Concatenándole ".json" será el servicio que devuelva el JSON de la información de ese item (producto). En mi caso https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/productos/prod-1.json.
+  ![Firebase](course_resources/imgs/firebase_21.PNG)
+  ![Firebase](course_resources/imgs/firebase_22.PNG)
+  - Fijándonos en la URL anterior, se indica el id del producto (cod). Ese dato lo tenemos, por lo que sustituyendolo por el item en concreto en cada llamada, tendremos los detalles del item qeu buscamos. En el ProductsService creado atenteriormente existe ya una función que carga los productos del home, es posible crear otra función que devuelva la llamada al servicio un producto (item). Aquí se puede usar una ventaja de ES6 para trabajar con strings, conteniendo el string entre **`** y usando **${}** para insertar datos (sin tener que concatenar). Después en el itemp.component usar esta función para hacer subscribe y así obtener el detalle de un item. En este caso se hace un poco diferente porque la respuesta del servicio es asíncrona y si hacemos que la función devuelva directamente el item, el flujo JavsScript sigue ejecutandose y por tanto se intentará logear antes de que se hay obtenido (haced la prueva, se logeará 'undefined'). Otra opción sería usar callbacks, pero es algo que no aborda el curso seguido.
+  ![Product service](course_resources/imgs/products_service_3.PNG)
+  ![Item component](course_resources/imgs/item_ts_2.PNG)
+  - Tras ello, en el item.component se puede usar esta función para obtener un producto. Además, lo ideal es crear una interfaz para el tipo de objeto que de vuelve esta llamada al firebase (item interface), usar **ng g i interfaces/itemDetail inteface** para crear la intefaz y usando la respuesta del servicio vista en el navegador junto con la extensión de visual estudio code "JSON to TS" ya estaría implementada.
+  ![Item detail](course_resources/imgs/item_detail_1.PNG)
+  ![Item component](course_resources/imgs/item_ts_3.PNG)
+
+  ## 6.8 Build item component with information from service
+  - Ya con la información obtenida del servicio, se puede personalizar cada item, modificando la implementación del componente.
+  ![Item HTML](course_resources/imgs/item_html_1.PNG)
+  - Quedaría obtener las imágenes del item, estas si se recuerda, estaban en los recursos del curso, en la carpeta "productos" que se copió dentro de la carpeta "assets" del proyecto. Habrá que recuperarlas de aquí. Para poder construir el path de las imagenes se necesita el id del item, por lo que deberemos crear un campo para almacenarlo en el item.component, y después usarlo en el HTML. En este punto hay que hacerlo con las dos imagenes que no son la principial, ya que esta es "especial".
+  ![Project strcuture](course_resources/imgs/project_structure_2.PNG)
+  ![Item TS](course_resources/imgs/item_ts_4.PNG)
+  ![Item HTML](course_resources/imgs/item_html_2.PNG)
+  - Inspeccionando el header del item en el browser, se puede observar que es el que pinta la imagen principal, pero en el código no se ve ningún tag "img". Lo que está haciendo pintar la imagen es la clase "item-inside-1". En los assets del proyecto, dentro de css hay un fichero "urku.css". Aquí es dónde el css está indicando la imagen a mostrar. Lo que haremos será comentar la propiedad que setea la imagen del item en el background y lo implementaremos nosotros con Angular en el código y no en el CSS. Si se recarga un item en la aplicación ya no aparecerá la imagen principal.
+  ![Urku CSS](course_resources/imgs/urku_1.PNG)
+  ![Urku CSS](course_resources/imgs/urku_2.PNG)
+  - Ahora, en el item.component.html se usará un atributo de angular **ngStyle** en el header donde se podrá definir el estilo de la tag y por tanto asignarle el valor al background-image que acabamos de comentar en el CSS. Aquí hay que tener en cuenta que el valor de la propiedad del style es un string, por lo que para obtener el itemId y poder construir correctamente la ruta de la imagen se necesita concatenar el valor. Se puede comprobar en la aplicación como ahora si que se muestra la imagen principal de cada item de manera correcta.
+  ![Urku CSS](course_resources/imgs/item_html_3.PNG)

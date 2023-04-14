@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
-import { DataPage } from '../interfaces/data-page.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,10 @@ export class ProductsService {
     this.http.get('https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/productos_idx.json').subscribe((resp: any) => {
       this.products = resp;
       this.loading = false;
-      console.log(resp)
     });
+  }
+
+  public getProduct(id: String) {
+    return this.http.get(`https://angular-from-html-to-webapp-default-rtdb.europe-west1.firebasedatabase.app/productos/${id}.json`);
   }
 }
