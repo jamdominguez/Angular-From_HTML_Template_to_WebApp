@@ -348,8 +348,10 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - En la consola del navegador no aparece ningún mensaje de que se esté ejecutando en modo de desarrollo (como antes). Ahora es cuando toca testear que todo funciona como se espera. Además ahora la pestaña del navegador ya no pone "localhost" sino "Portafolio" y aparece con un icono. A mi me apercen dos errores intentando cargar un recurso de CSS pero nada relevante en cuanto a composición de la WebbApp (me queda pendiente revisarlo ya que tengo mis dudas si sucederá los mismo con GitHub Pages).
   ![WebApp](course_resources/imgs/app_browser_11.PNG)
   ![WebApp](course_resources/imgs/app_browser_12.PNG)
-  - Antes de subir los cambios al repositorio, la distrubición, el contenido de "dist>portafolio", se tiene que mover a una carpeta "portafolio>docs" ya que GitHub Pages usa lo que haya en esta carpeta para desplegar. En el index.html  del docs y el del proyecto comentar el taga "base con href" porque todos los enlaces que se encuentran en el index tomarían como path relativo el origen del repositorio y la URL por tanto no sería la correcta.
+  - Antes de subir los cambios al repositorio, la distrubición, el contenido de "dist>portafolio", se tiene que mover a una carpeta en la raiz del repositorio llamada "docs" ya que GitHub Pages usa lo que haya en esta carpeta para desplegar. En el index.html  del docs y el del proyecto comentar el taga "base con href" porque todos los enlaces que se encuentran en el index tomarían como path relativo el origen del repositorio y la URL por tanto no sería la correcta.
   ![Project structure](course_resources/imgs/project_structure_3.PNG)
   ![Index docs](course_resources/imgs/index_docs_1.PNG)
   ![Index src](course_resources/imgs/index_src_1.PNG)
   - Volviendo a ejecutar **ng serve** el proyecto se compila y se queda preparado para pre producción. En este punto se puede subir a GitHub.
+  - Ahora se debe publicar la página usando GitHub Pages. Dentro del repositorio, en la tab settings, buscar la sección GitHub Pages en el menú de la izquierdda. Y en la branch, se selecciona en la que esté el codigo que se quiere publicar, en mi caseo en "main", y en el folder el "/docs".
+  ![GitHub](course_resources/imgs/github_1.PNG)
