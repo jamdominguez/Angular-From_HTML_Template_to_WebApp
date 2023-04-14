@@ -304,4 +304,30 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   ![Urku CSS](course_resources/imgs/urku_1.PNG)
   ![Urku CSS](course_resources/imgs/urku_2.PNG)
   - Ahora, en el item.component.html se usará un atributo de angular **ngStyle** en el header donde se podrá definir el estilo de la tag y por tanto asignarle el valor al background-image que acabamos de comentar en el CSS. Aquí hay que tener en cuenta que el valor de la propiedad del style es un string, por lo que para obtener el itemId y poder construir correctamente la ruta de la imagen se necesita concatenar el valor. Se puede comprobar en la aplicación como ahora si que se muestra la imagen principal de cada item de manera correcta.
-  ![Urku CSS](course_resources/imgs/item_html_3.PNG)
+  ![Item HTML](course_resources/imgs/item_html_3.PNG)
+
+  ## 7. Busquedas
+  - En esta sección se va a implementar la característica de busqueda dentro de la aplicación, aprovechando de este modo el código ya existente en la template HTML de la que se partió para construir la WebbApp.
+  
+  ## 7.1 Get value to search
+  - Es en el header.component donde está la sección para buscar y ahí es donde se debe añadir lógica para obtener este valor. En el HTML al localizar la zona del search se puede ver como está en un tag form, esto quiere decir que hace un full refresh al hacer la busqqueda (envía el formulario). Trabajando con Angular se deberían usar las herramientas que proporciona el framework para sólo hacer un refresh parcial, pero es algo que añadiría complejidad a la aplicación y que para una cosa tan simple como una busqueda no vale la pena (en esta situación).
+  - Se sustituye el form por un div y al input se le añade la escucha de eventos. Como se ha comentado no se va a usar las ventajas de Angular en este caso, hay que referenciar cual es el elemento del HTML que contiene el valor a buscar, eso se hace añadiendo "#txtBuscar" al elmento y pasandolo como parámetro a la función que se va a ejecutar cuando se lance el evento.
+  ![Header HTML](course_resources/imgs/header_html_7.PNG)
+  
+  ## 7.2 Building search page
+  - Ahora hay que implementar la función en el header.component.ts. Añadiendo un console.log a la implementación se puede ver en la consola del navegador que el valor se pasa correctamente. Lo que se quiere, es que con el valor obtenido se haga una busqueda y se muestre una nueva página con los productos que coninciden en el filtro de la busqueda. Se crea por tanto, un nuevo componente para dicha página **ng g c pages/search --skip-tests**. Además para poder navegar a ella hay que generar la ruta y en el header, importar el Router para usarlo. Por ahora, se puede comprobar que la navegación funciona. Notese que se ha implementado de la misma manera que la navegación a los items en el HTML del portafolio.
+  ![Routing](course_resources/imgs/routing_7.PNG)
+  ![Header TS](course_resources/imgs/header_ts_2.PNG)
+  - En el search component hay que leer el parámetro de la URL (como ya se vió anteriormente en el componente item). Haciendo un console.log se puede ver el objeto params y verificar el nombre del parametro donde nos llega el qué se quiere filtrar. Este parámetro es el nombre que se ha indicado previamente en el app-routing.ts, en mi caso "value".
+  ![Search TS](course_resources/imgs/search_ts_1.PNG)
+  - Los productos que queremos filtrar los proporciona el ProductsService, en este componente habrá que añadir un campo array más que sea el que contenga los items filtrados. En el servicio habrá que crear una nueva función que rellene este array con el valor de busqueda proporcionado (searchItem). Éste, se usará para montar el HTML del search. Para ello habrá que partir de una division del portalfolio.component.html.
+  ![Product service](course_resources/imgs/products_service_4.PNG)
+  ![Search TS](course_resources/imgs/search_ts_2.PNG)
+  ![Search HTML](course_resources/imgs/search_html_1.PNG)
+  - Existe un pequeño problema que se debe a que cuando se recarga la aplicación directamente con la ruta del search, el array products del ProductsService auno no está cargado, ya que la respuesta es asincrona y el constructor del search llaba a searchItem que se ejecuta antes, por lo que se filtra sobre un array vacío, dando como resultado que la página se vea vacía y que en el log podamos ver el array vacío. Para solventar esto, se va a modificar el ProductsService haciendo uso de otra característica de ES6, las promesas. La promesa basicamente nos ayuda a saber si la llamada al servicio ya ha respondido o no. Manteniendo el console log, se puede ver como se ejecuta el código pero el filtraje no se hace hasta que no hay items que filtrar (gracias a la promesa) y el resultado es que la web no está vacía.
+  ![WebApp](course_resources/imgs/app_browser_8.PNG)
+  ![Product service](course_resources/imgs/products_service_5.PNG)
+  ![WebApp](course_resources/imgs/app_browser_9.PNG)
+  - En este punto ya sólo queda establecer cómo se quiere hacer el filtraje, tomemos el campo "categoria" y "titulo" para filtrar, de modo que si lo escrito por el usuario coincide con alguno de estos dos campos se muestre y que ademas le sea indiferente si está en mayuscula o minuscula. Si todo funciona se puede eliminar el console.log que se usa para verificar que todo está correcto.
+  ![Product service](course_resources/imgs/products_service_6.PNG)
+  ![WebApp](course_resources/imgs/app_browser_10.PNG)

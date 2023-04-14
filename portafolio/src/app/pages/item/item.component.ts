@@ -11,7 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ItemComponent {
 
   item: ItemDetail = {};
-  itemId: String = '';
+  itemId: string = '';
 
   constructor(private route: ActivatedRoute, public productsService: ProductsService) {
     this.route.params.subscribe(urlParams => {
