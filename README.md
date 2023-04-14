@@ -19,7 +19,7 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
 - Instalar Angular: npm install -g @angular/cli
 - Versión de Angular: ng version
 - Creación de proyecto angular: ng new nombreApp
-- Arrancar aplicación: ng serve -o
+- Arrancar aplicación: ng serve -o (-o para abrirlo automaticamente)
 - Crear un componente: ng g c nombreComponente
 - Ayuda en creación de componentes: ng g c --help
 
@@ -331,3 +331,25 @@ Based in Udemy course to lear how transform a HTML template to WebApp in Angular
   - En este punto ya sólo queda establecer cómo se quiere hacer el filtraje, tomemos el campo "categoria" y "titulo" para filtrar, de modo que si lo escrito por el usuario coincide con alguno de estos dos campos se muestre y que ademas le sea indiferente si está en mayuscula o minuscula. Si todo funciona se puede eliminar el console.log que se usa para verificar que todo está correcto.
   ![Product service](course_resources/imgs/products_service_6.PNG)
   ![WebApp](course_resources/imgs/app_browser_10.PNG)
+
+  # 8 Publish in GitHub Pages
+  Se usará un paquete de Node (HttpServer) para verificar que todo funciona correctamente y después se desplegará la aplicación en GitHub Pages. En el curso se explica como subir el código a GitHub, pero en mi caso ya inicié el repositorio en GitHub antes de empezar el curso para ir subiendo los cambios (es este mismo).
+
+  ## 8.1 Preproduction testing
+  - Sin tener arrancada la aplicación se debe usar el siguiente comando para crear la versión de producción **ng build --configuration production** (notese que la instrucción indicada en el curso ya está elminada en la últimas version es de Angular). Esto optimiza los ficheros de la aplicación y genera una carpeta "dist" en la raiz del proyecto y es la que se debe hostear. En la carpeta se pueden ver los 4 archivos que son necesarios para que la aplicación funcione además de otros.
+    - main: Contiene la aplicación
+    - polyfills: Contiene comandos y carasteristicas de compatibilidad con navegadores web
+    - runtime
+    - styles
+  ![Terminal](course_resources/imgs/terminal_1.PNG)
+  - Antes de desplegar la aplicación en GitHub Pages, podemos usar un servidor http para testearla. Par ellos buscar npm http-server en google (https://www.npmjs.com/package/http-server), en esta página se indica como usando npm (Node Package Module) se puede instalar este servidor. Con la instrucción **npm i -g http-server** (la -g para instalarlo de manera global) y para arrancar el servidor **http-server**, esta instrucción hay que ejecutarla dentro de la carpeta donde están los archivos construidos para deployar. Tras arrancar el servidor podremos ver la dirección donde lo ha deployado y en la terminal aparecerá el log de comunicaciones con el mismo.
+  ![Terminal](course_resources/imgs/terminal_2.PNG)
+  ![Terminal](course_resources/imgs/terminal_3.PNG)
+  - En la consola del navegador no aparece ningún mensaje de que se esté ejecutando en modo de desarrollo (como antes). Ahora es cuando toca testear que todo funciona como se espera. Además ahora la pestaña del navegador ya no pone "localhost" sino "Portafolio" y aparece con un icono. A mi me apercen dos errores intentando cargar un recurso de CSS pero nada relevante en cuanto a composición de la WebbApp (me queda pendiente revisarlo ya que tengo mis dudas si sucederá los mismo con GitHub Pages).
+  ![WebApp](course_resources/imgs/app_browser_11.PNG)
+  ![WebApp](course_resources/imgs/app_browser_12.PNG)
+  - Antes de subir los cambios al repositorio, la distrubición, el contenido de "dist>portafolio", se tiene que mover a una carpeta "portafolio>docs" ya que GitHub Pages usa lo que haya en esta carpeta para desplegar. En el index.html  del docs y el del proyecto comentar el taga "base con href" porque todos los enlaces que se encuentran en el index tomarían como path relativo el origen del repositorio y la URL por tanto no sería la correcta.
+  ![Project structure](course_resources/imgs/project_structure_3.PNG)
+  ![Index docs](course_resources/imgs/index_docs_1.PNG)
+  ![Index src](course_resources/imgs/index_src_1.PNG)
+  - Volviendo a ejecutar **ng serve** el proyecto se compila y se queda preparado para pre producción. En este punto se puede subir a GitHub.
